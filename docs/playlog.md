@@ -55,6 +55,10 @@ The question about adding PlayLog to MiSTer startup is the same question, asked 
 
 `playlog.sh -service start|stop|restart|status` is unchanged and stays headless, so `user-startup.sh` is unaffected.
 
+## Remote
+
+[Remote](remote.md) serves PlayLog's stats to its clients over its API: time per game and system, play counts, recent sessions and a summary. It only reads the database, so it adds no writes to the SD card.
+
 ## Configuration
 
 PlayLog can be configured by creating a `playlog.ini` file in the `/media/fat/Scripts` folder where you put `playlog.sh`. For example:
