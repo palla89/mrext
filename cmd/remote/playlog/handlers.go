@@ -206,7 +206,10 @@ func load(w http.ResponseWriter, r *http.Request, env *Env) (*History, bool) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return nil, false
 	}
-	if env.Live != nil {
+	// Only while PlayLog records: stopped, it saves none of the running
+	// game's time, and a session left open by a crash would take on a
+	// later run's seconds.
+	if env.Live != nil && env.Running() {
 		history.ApplyLive(env.Live())
 	}
 	return history, true

@@ -367,6 +367,19 @@ func TestApplyLiveExtendsTheRunningSession(t *testing.T) {
 	}
 }
 
+func TestHandlersIgnoreLiveTimeWhilePlayLogIsStopped(t *testing.T) {
+	t.Parallel()
+	env := testEnv(t, library(t))
+	env.Running = func() bool { return false }
+	env.Live = func() (tracker.RunningGame, int) { return tracker.RunningGame{ID: sf2}, 1000 }
+
+	var game GameStats
+	get(t, HandleGame(env), "/playlog/game?path=/media/fat/_Arcade/Street%20Fighter%20II.mra", &game)
+	if game.Time != 900 {
+		t.Errorf("game time with PlayLog stopped = %d, want the saved 900", game.Time)
+	}
+}
+
 func TestHandlersIncludeTheRunningSession(t *testing.T) {
 	t.Parallel()
 	env := testEnv(t, library(t))

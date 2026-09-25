@@ -963,7 +963,7 @@ Game objects have these attributes:
 
 A session is one run of one game, rebuilt from PlayLog's start and stop events. A session without a stop, after a power cut, ends where the game's next session starts or at its saved total.
 
-PlayLog saves a running game's time only every few minutes. Remote brings the running game up to date from its own tracker, so every endpoint includes the current session as it stands, not as last saved. Until that first save PlayLog knows a new game only by its ID, so Remote also fills in the running game's path and name.
+PlayLog saves a running game's time only every few minutes. While PlayLog is running, Remote brings the running game up to date from its own tracker, so every endpoint includes the current session as it stands, not as last saved. Until that first save PlayLog knows a new game only by its ID, so Remote also fills in the running game's path and name.
 
 #### Play log status
 
